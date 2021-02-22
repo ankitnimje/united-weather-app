@@ -53,6 +53,7 @@ const WeatherCard = () => {
   const [city, setCity] = useState(null);
   const [location, setLocation] = useState(null);
   const [search, setSearch] = useState("Houston");
+  const [timezone, setTimezone] = useState('America/Chicago');
   
   useEffect(() => {
     getLocation(setLocation);
@@ -73,6 +74,18 @@ const WeatherCard = () => {
     }
     fetchApi();
   }, [search]);
+
+  useEffect(() => {
+    if(city && city.coord) {
+      const fetchTimezone = async () => {
+        const G_URL = `https://maps.googleapis.com/maps/api/timezone/json?location=${city.coord.lat},${city.coord.lon}&timestamp=1374868635&sensor=false&key=AIzaSyA8MVFHTM8plJ8G4306a8VrTgZ24eoRiz0`;
+        const response = await fetch(G_URL);
+        const dataTimeZone = await response.json();
+        setTimezone(dataTimeZone.timeZoneId);
+      }
+      fetchTimezone();
+    }
+  }, [city]);
 
   // console.log(city);
 
@@ -116,6 +129,7 @@ const WeatherCard = () => {
             iconId={city.weather[0].icon}
             desc={city.weather[0].description}
             dt={city.sys.sunrise}
+            timezone={timezone}
             humidity={city.main.humidity}
           />
         ) :
@@ -128,8 +142,7 @@ const WeatherCard = () => {
                   color="textPrimary"
                   component="h2"
                   style={{ fontFamily: "Montserrat", paddingTop: "30px" }}
-              >
-                  No City Found
+              >No City Found  
               </Typography>
             </CardContent>
           </Card>

@@ -56,36 +56,13 @@ const WeatherInfo = (props) => {
 
     const [checked, setChecked] = useState(false);
 
+    console.log(props.timezone);
+
     const toggleChecked = () => {
         setChecked((prev) => !prev);
     };
 
-    // Time
-    let today = new Date();
-    const dd = String(today.getDate()).padStart(2, '0');
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
-    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-
-    let hr = today.getHours();
-    let ampm = "AM";
-    if( hr > 12 ) {
-        hr -= 12;
-        ampm = "PM";
-    } else if(hr === 0) {
-        hr = 12;
-    }
-
-    let minutes = today.getMinutes();
-    if(minutes < 10) {
-        minutes = `0${minutes}`;
-    }
-
-    const day = days[ today.getDay() ];
-    const month = monthNames[today.getMonth()];
-    const time = `${hr}:${minutes} ${ampm}`;
-
-    // console.log(time);
+    let today = new Date().toLocaleString("en-US", {timeZone: props.timezone});
 
     //Wind Direction
     const deg = props.windDeg;
@@ -124,7 +101,7 @@ const WeatherInfo = (props) => {
                         className={classes.cardTop}
                         titleTypographyProps={{variant:'h4' }}
                         title={props.city + ", " + props.country} 
-                        subheader={`${month} ${dd}, ${day}, ${time}`}
+                        subheader={today}
                     />
                     <CardContent>
                         <img src={`https://openweathermap.org/img/wn/${props.iconId}@2x.png`} alt="weather-icon" />
