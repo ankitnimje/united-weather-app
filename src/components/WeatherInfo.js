@@ -127,7 +127,7 @@ const WeatherInfo = (props) => {
                         subheader={`${month} ${dd}, ${day}, ${time}`}
                     />
                     <CardContent>
-                        <img src={`http://openweathermap.org/img/wn/${props.iconId}@2x.png`} alt="weather-icon" />
+                        <img src={`https://openweathermap.org/img/wn/${props.iconId}@2x.png`} alt="weather-icon" />
                         <Typography variant="subtitle2" color="textSecondary" gutterBottom>
                             {props.desc}
                         </Typography>
