@@ -66,7 +66,7 @@ const WeatherCard = () => {
 
   useEffect(() => {
     const fetchApi = async () => {
-      const URL = `http://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_KEY}&units=metric`;
+      const URL = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_KEY}&units=metric`;
       const response = await fetch(URL);
       const data = await response.json();
       setCity(data);
