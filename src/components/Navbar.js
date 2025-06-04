@@ -4,6 +4,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -16,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const Navbar = () => {
+const Navbar = ({ darkMode, setDarkMode }) => {
     const classes = useStyles();
 
     return (
@@ -26,7 +28,11 @@ const Navbar = () => {
                 <Typography variant="h6" className={classes.title}>
                     United Weather
                 </Typography>
-                <Button 
+                <FormControlLabel
+                    control={<Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} color="default" />}
+                    label="Dark Mode"
+                />
+                <Button
                     color="inherit"
                     onClick={()=> window.open("https://openweathermap.org/api", "_blank")}
                 >OpenWeatherMap API</Button>

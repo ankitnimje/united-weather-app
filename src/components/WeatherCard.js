@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "20px"
   },
   card: {
-    backgroundColor: "white",
+    backgroundColor: theme.palette.background.paper,
     textAlign: "center"
   },
   weatherInfo: {
