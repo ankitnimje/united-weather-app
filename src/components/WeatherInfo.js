@@ -22,7 +22,7 @@ atmospheric: {
 card: {
     minWidth: "50vw",
     minHeight: "80wh",
-    backgroundColor: "white",
+    backgroundColor: theme.palette.background.paper,
     textAlign: "center",
 },
 cardTop: {
